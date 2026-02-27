@@ -4,7 +4,9 @@
  */
 package Vista;
 
+import Control.ControlPagoLuz;
 import Modelo.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,12 +14,21 @@ import Modelo.Cliente;
  */
 public class pnlDatosConsumo extends javax.swing.JPanel {
 
+    private Cliente cliente;
+    private ControlPagoLuz control;
+
     /**
      * Creates new form pnlDatosConsumo
      */
-    public pnlDatosConsumo() {
+    public pnlDatosConsumo(Cliente cliente, ControlPagoLuz control) {
+        this.cliente = cliente;
+        this.control = control;
+
         initComponents();
-        lblNombre.setText("<html><body style='width: 400px; text-align: center'>" + "<b>" + Cliente.getNombre() + "</b>" + "</body></html>");
+
+        lblNombre.setText("<html><div style='text-align: center;'><h2 style='margin:0;'>" + cliente.getNombre() + "</h2></div></html>");
+        lblEnergia.setText(String.valueOf(cliente.getKwh()));
+        lblTotal.setText(String.format("%.2f", cliente.getTotal()));
     }
 
     /**
@@ -37,7 +48,7 @@ public class pnlDatosConsumo extends javax.swing.JPanel {
         lblTotal = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNumTarjeta = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnPagar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 250, 226));
         setMaximumSize(new java.awt.Dimension(480, 300));
@@ -50,6 +61,7 @@ public class pnlDatosConsumo extends javax.swing.JPanel {
         jLabel1.setText("Energia (kWh):");
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setText("nombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -64,12 +76,12 @@ public class pnlDatosConsumo extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Número de tarjeta:");
 
-        jButton1.setBackground(new java.awt.Color(230, 189, 112));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton1.setText("Pagar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPagar.setBackground(new java.awt.Color(230, 189, 112));
+        btnPagar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnPagar.setText("Pagar");
+        btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPagarActionPerformed(evt);
             }
         });
 
@@ -80,30 +92,33 @@ public class pnlDatosConsumo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNombre)
-                                        .addGap(8, 8, 8)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(129, 129, 129)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEnergia)
-                                    .addComponent(lblTotal)))
-                            .addComponent(jLabel7)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblEnergia)
+                                            .addComponent(lblTotal)))
+                                    .addComponent(jLabel7)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(203, 203, 203)
+                                .addComponent(btnPagar)))
+                        .addGap(0, 83, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jButton1)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,18 +140,40 @@ public class pnlDatosConsumo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(btnPagar)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        String tarjeta = txtNumTarjeta.getText().trim().replace(" ", "").replace("-", "");
+        
+        if(tarjeta.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número de tarjeta.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if(!tarjeta.matches("\\d{16}")) {
+            JOptionPane.showMessageDialog(this, "El número de tarjeta es inválido. Debe contener 16 dígitos.", "Formato incorrecto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                this, 
+                "¿Desea realizar el pago?", 
+                "Confirmar Pago", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            control.eventoBotonPagar();
+        }
+    }//GEN-LAST:event_btnPagarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

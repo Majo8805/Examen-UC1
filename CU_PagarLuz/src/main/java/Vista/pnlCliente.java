@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Control.ControlPagoLuz;
 import Modelo.Cliente;
 
 /**
@@ -12,12 +13,20 @@ import Modelo.Cliente;
  */
 public class pnlCliente extends javax.swing.JPanel {
 
+    private Cliente cliente;
+    private ControlPagoLuz control;
+    
     /**
      * Creates new form pnlCliente
      */
-    public pnlCliente() {
+    public pnlCliente(Cliente cliente, ControlPagoLuz control) {
+        this.cliente = cliente;
+        this.control = control;
+        
         initComponents();
-        lblNombre.setText("<html><body style='width: 150px'><b>" + Cliente.getNombre() + "</b></body></html>");
+
+        lblNombre.setText("<html><body style='width: 150px'><b>" + cliente.getNombre() + "</b></body></html>");
+        lblNumServicio.setText(cliente.getNumServicio());
     }
 
     /**
@@ -30,7 +39,8 @@ public class pnlCliente extends javax.swing.JPanel {
     private void initComponents() {
 
         lblNombre = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
+        lblNumServicio = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 244, 193));
         setMaximumSize(new java.awt.Dimension(209, 90));
@@ -39,9 +49,17 @@ public class pnlCliente extends javax.swing.JPanel {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblNombre.setText("nombre");
 
-        jButton1.setBackground(new java.awt.Color(230, 189, 112));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Seleccionar");
+        btnSeleccionar.setBackground(new java.awt.Color(230, 189, 112));
+        btnSeleccionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+
+        lblNumServicio.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblNumServicio.setText("451234567890");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,11 +67,14 @@ public class pnlCliente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNombre)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNombre)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblNumServicio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(btnSeleccionar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -62,14 +83,21 @@ public class pnlCliente extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeleccionar)
+                    .addComponent(lblNumServicio))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        control.notificarSeleccion(cliente.getNumServicio());
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNumServicio;
     // End of variables declaration//GEN-END:variables
 }

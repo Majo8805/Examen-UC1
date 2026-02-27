@@ -7,6 +7,13 @@ package Vista;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JFrame;
+import Control.ControlPagoLuz;
+import Modelo.Cliente;
+import Modelo.ModeloCliente;
+import java.awt.CardLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.List;
 
 /**
  *
@@ -14,11 +21,68 @@ import javax.swing.JFrame;
  */
 public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
 
+    private ModeloCliente modelo;
+    private ControlPagoLuz control;
+
+    private CardLayout cardLayoutConsumo;
+
     /**
      * Creates new form VistaPagoLuz
      */
     public VistaPagoLuz() {
         initComponents();
+        this.modelo = new ModeloCliente();
+        this.control = new ControlPagoLuz(this, modelo);
+        this.modelo.addPropertyChangeListener(this);
+        cardLayoutConsumo = new CardLayout();
+        pnlConsumo.setLayout(cardLayoutConsumo);
+
+        txtBusqueda.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                control.eventoBusqueda(txtBusqueda.getText());
+            }
+        });
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        String nombreEvento = evt.getPropertyName();
+
+        if (nombreEvento.equals("resultadosBusqueda")) {
+            List<Cliente> lista = (List<Cliente>) evt.getNewValue();
+            actualizarInterfazLista(lista);
+        } else if (nombreEvento.equals("clienteSeleccionado")) {
+            Cliente cliente = (Cliente) evt.getNewValue();
+            actualizarInterfazConsumo(cliente, false); 
+        } else if (nombreEvento.equals("pagoRealizado")) {
+            Cliente cliente = (Cliente) evt.getNewValue();
+            actualizarInterfazConsumo(cliente, true); 
+        }
+    }
+
+    private void actualizarInterfazLista(List<Cliente> lista) {
+        pnlListaClientes.removeAll(); 
+
+        for (Cliente c : lista) {
+            pnlCliente tarjeta = new pnlCliente(c, control);
+            pnlListaClientes.add(tarjeta);
+        }
+
+        pnlListaClientes.revalidate();
+        pnlListaClientes.repaint();
+    }
+
+    private void actualizarInterfazConsumo(Cliente datos, boolean pagado) {
+        pnlConsumo.removeAll();
+
+        if (pagado) {
+            pnlConsumo.add(new pnlRecibo(datos));
+        } else {
+            pnlConsumo.add(new pnlDatosConsumo(datos, control));
+        }
+
+        pnlConsumo.revalidate();
+        pnlConsumo.repaint();
     }
 
     /**
@@ -43,7 +107,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
 
         jPanel1.setBackground(new java.awt.Color(254, 244, 193));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setMaximumSize(new java.awt.Dimension(812, 556));
+        jPanel1.setMaximumSize(new java.awt.Dimension(812, 529));
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 226));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -75,11 +139,14 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(pnlListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlConsumo.setBackground(new java.awt.Color(255, 250, 226));
+        pnlConsumo.setMaximumSize(new java.awt.Dimension(480, 300));
+        pnlConsumo.setMinimumSize(new java.awt.Dimension(480, 300));
+        pnlConsumo.setPreferredSize(new java.awt.Dimension(480, 300));
 
         javax.swing.GroupLayout pnlConsumoLayout = new javax.swing.GroupLayout(pnlConsumo);
         pnlConsumo.setLayout(pnlConsumoLayout);
@@ -104,8 +171,8 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(32, Short.MAX_VALUE)
-                        .addComponent(pnlConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(pnlConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                         .addGap(31, 31, 31))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -125,8 +192,8 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(pnlConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(38, 38, 38))
         );
 
@@ -140,7 +207,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -176,15 +243,15 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaPagoLuz().setVisible(true);
+                
+                VistaPagoLuz ventana = new VistaPagoLuz();
+
+                ventana.setLocationRelativeTo(null);
+                ventana.setVisible(true);
             }
         });
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

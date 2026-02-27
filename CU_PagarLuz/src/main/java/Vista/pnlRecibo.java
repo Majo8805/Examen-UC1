@@ -12,12 +12,17 @@ import Modelo.Cliente;
  */
 public class pnlRecibo extends javax.swing.JPanel {
 
+    private Cliente cliente;
+    
     /**
      * Creates new form pnlDatosConsumo
      */
-    public pnlRecibo() {
+    public pnlRecibo(Cliente cliente) {
+        this.cliente = cliente;
         initComponents();
-        lblNombre.setText("<html><body style='width: 400px; text-align: center'>" + "<b>" + Cliente.getNombre() + "</b>" + "</body></html>");
+        lblNombre.setText(cliente.getNombre());
+        lblEnergia.setText(String.valueOf(cliente.getKwh()));
+        lblTotal.setText("$" + String.format("%.2f", cliente.getTotal()));
     }
 
     /**
@@ -49,6 +54,7 @@ public class pnlRecibo extends javax.swing.JPanel {
         jLabel1.setText("Energia (kWh):");
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setText("nombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -61,9 +67,11 @@ public class pnlRecibo extends javax.swing.JPanel {
         lblTotal.setText("$$$");
 
         lblNombre1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre1.setText("~~~~~~~~~~~~~~~~~~");
 
         lblNombre2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblNombre2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre2.setText("~~~~~~~~~~~~~~~~~~");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -77,23 +85,22 @@ public class pnlRecibo extends javax.swing.JPanel {
                     .addComponent(lblNombre2))
                 .addGap(93, 93, 93))
             .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNombre)
-                                .addGap(8, 8, 8)))
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEnergia)
                             .addComponent(lblTotal)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jLabel2)))
+                    .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,13 +112,15 @@ public class pnlRecibo extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(lblNombre)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblEnergia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblTotal))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEnergia)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblTotal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(lblNombre2)
                 .addContainerGap())

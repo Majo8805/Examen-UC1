@@ -44,7 +44,7 @@ public class ModeloCliente {
         }
 
         for (Cliente c : listaClientes) {
-            if (c.getNumServicio().contains(texto)) {
+            if (c.getNumServicio().startsWith(texto)) {
                 resultados.add(c);
             }
         }
