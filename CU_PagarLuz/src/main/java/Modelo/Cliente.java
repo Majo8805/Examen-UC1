@@ -10,24 +10,24 @@ package Modelo;
  */
 public class Cliente {
     
-    private String idCliente;
+    private String numServicio;
     private String nombre;
     private float kwh;
     private double total;
 
-    public Cliente(String idCliente, String nombre, float kwh, double total) {
-        this.idCliente = idCliente;
+    public Cliente(String numServicio, String nombre, float kwh, double total) {
+        this.numServicio = numServicio;
         this.nombre = nombre;
         this.kwh = kwh;
         this.total = total;
     }
 
-    public String getIdCliente() {
-        return idCliente;
+    public String getNumServicio() {
+        return numServicio;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setNumServicio(String numServicio) {
+        this.numServicio = numServicio;
     }
 
     public String getNombre() {
@@ -56,7 +56,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", kwh=" + kwh + ", total=" + total + '}';
+        return "Cliente{" + "numServicio=" + numServicio + ", nombre=" + nombre + ", kwh=" + kwh + ", total=" + total + '}';
     }
     
 }
