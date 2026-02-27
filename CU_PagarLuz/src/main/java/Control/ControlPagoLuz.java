@@ -4,10 +4,33 @@
  */
 package Control;
 
+import Modelo.ModeloCliente;
+import Vista.VistaPagoLuz;
+
 /**
  *
  * @author garfi
  */
 public class ControlPagoLuz {
+    
+    private VistaPagoLuz vista;
+    private ModeloCliente modelo;
+    
+    public ControlPagoLuz(VistaPagoLuz vista, ModeloCliente modelo) {
+        this.vista = vista;
+        this.modelo = modelo;
+    }
+    
+    public void eventoBusqueda(String texto) {
+        modelo.buscarClientes(texto); 
+    }
+    
+    public void notificarSeleccion(String numeroServicio) {
+        modelo.seleccionarCliente(numeroServicio); 
+    }
+    
+    public void eventoBotonPagar() {
+        modelo.realizarPago(); 
+    }
     
 }
