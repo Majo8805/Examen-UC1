@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Modelo.Cliente;
+
 /**
  *
  * @author garfi
@@ -11,10 +13,11 @@ package Vista;
 public class pnlRecibo extends javax.swing.JPanel {
 
     /**
-     * Creates new form pnlRecibo
+     * Creates new form pnlDatosConsumo
      */
     public pnlRecibo() {
         initComponents();
+        lblNombre.setText("<html><body style='width: 400px; text-align: center'>" + "<b>" + Cliente.getNombre() + "</b>" + "</body></html>");
     }
 
     /**
@@ -26,19 +29,104 @@ public class pnlRecibo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblEnergia = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 250, 226));
+        setMaximumSize(new java.awt.Dimension(480, 300));
+        setPreferredSize(new java.awt.Dimension(480, 300));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Recibo de pago");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel1.setText("Energia (kWh):");
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setText("nombre");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setText("Monto pagado:");
+
+        lblEnergia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblEnergia.setText("1234");
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTotal.setText("$$$");
+
+        lblNombre1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblNombre1.setText("~~~~~~~~~~~~~~~~~~");
+
+        lblNombre2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblNombre2.setText("~~~~~~~~~~~~~~~~~~");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNombre1)
+                    .addComponent(lblNombre2))
+                .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNombre)
+                                .addGap(8, 8, 8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEnergia)
+                            .addComponent(lblTotal)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lblNombre1)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(lblNombre)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblEnergia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblTotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(lblNombre2)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblEnergia;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
+    private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 }

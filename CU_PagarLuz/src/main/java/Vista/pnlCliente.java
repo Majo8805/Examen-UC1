@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Modelo.Cliente;
+
 /**
  *
  * @author garfi
@@ -15,6 +17,7 @@ public class pnlCliente extends javax.swing.JPanel {
      */
     public pnlCliente() {
         initComponents();
+        lblNombre.setText("<html><body style='width: 150px'><b>" + Cliente.getNombre() + "</b></body></html>");
     }
 
     /**
@@ -26,19 +29,47 @@ public class pnlCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblNombre = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(254, 244, 193));
+        setMaximumSize(new java.awt.Dimension(209, 90));
+        setPreferredSize(new java.awt.Dimension(209, 90));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblNombre.setText("nombre");
+
+        jButton1.setBackground(new java.awt.Color(230, 189, 112));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("Seleccionar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(109, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

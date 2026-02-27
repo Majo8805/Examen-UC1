@@ -34,7 +34,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pnlListaClientes = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlConsumo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
 
@@ -43,6 +43,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
 
         jPanel1.setBackground(new java.awt.Color(254, 244, 193));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setMaximumSize(new java.awt.Dimension(812, 556));
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 226));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -51,17 +52,9 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
         jLabel1.setText("Lista de Clientes");
 
         pnlListaClientes.setBackground(new java.awt.Color(255, 250, 226));
-
-        javax.swing.GroupLayout pnlListaClientesLayout = new javax.swing.GroupLayout(pnlListaClientes);
-        pnlListaClientes.setLayout(pnlListaClientesLayout);
-        pnlListaClientesLayout.setHorizontalGroup(
-            pnlListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlListaClientesLayout.setVerticalGroup(
-            pnlListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        pnlListaClientes.setMaximumSize(new java.awt.Dimension(229, 474));
+        pnlListaClientes.setPreferredSize(new java.awt.Dimension(229, 474));
+        pnlListaClientes.setLayout(new javax.swing.BoxLayout(pnlListaClientes, javax.swing.BoxLayout.Y_AXIS));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -72,7 +65,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addComponent(pnlListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26))
         );
@@ -86,16 +79,16 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 250, 226));
+        pnlConsumo.setBackground(new java.awt.Color(255, 250, 226));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlConsumoLayout = new javax.swing.GroupLayout(pnlConsumo);
+        pnlConsumo.setLayout(pnlConsumoLayout);
+        pnlConsumoLayout.setHorizontalGroup(
+            pnlConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlConsumoLayout.setVerticalGroup(
+            pnlConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 322, Short.MAX_VALUE)
         );
 
@@ -112,7 +105,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(32, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -132,8 +125,8 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
@@ -198,7 +191,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel pnlConsumo;
     private javax.swing.JPanel pnlListaClientes;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
