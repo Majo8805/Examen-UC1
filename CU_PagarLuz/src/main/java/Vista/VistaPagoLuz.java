@@ -104,6 +104,7 @@ public class VistaPagoLuz extends JFrame implements PropertyChangeListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 244, 193));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(254, 244, 193));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
